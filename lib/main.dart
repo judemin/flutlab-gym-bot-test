@@ -35,6 +35,7 @@ class MyHomePage extends StatelessWidget {
       body: Center(
         child: Text(
           'Gym-Bot',
+          style: TextStyle(color: Colors.blue),
         ),
       ),
     );
