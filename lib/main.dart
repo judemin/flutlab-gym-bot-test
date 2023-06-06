@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       ),
       home: SignUpPage(
           signUpUseCase:
-              new SignUpUseCase(userRepository: new UserRepository())),
+              new SignUpUseCase(userRepository: UserRepositoryImpl())),
     );
   }
 }
