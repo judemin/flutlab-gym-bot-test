@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:gym_bot/data/repository/user_repository_impl.dart';
+import 'package:provider/provider.dart';
+import 'package:gym_bot/presentation/screens/signup_page.dart';
+import 'package:gym_bot/domain/usecases/signup_usecase.dart';
+import 'package:gym_bot/domain/repository/user_repository.dart';
 
 void main() => runApp(MyApp());
 
@@ -8,36 +13,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // Application name
-      title: 'Flutter Hello World',
-      // Application theme data, you can set the colors for the application as
-      // you want
+      title: 'Gym-Bot Test',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      // A widget which will be started on application startup
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  final String title;
-  const MyHomePage({super.key, required this.title});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        // The title text which will be shown on the action bar
-        title: Text(title),
-      ),
-      body: Center(
-        child: Text(
-          'Gym-Bot',
-          style: TextStyle(color: Colors.blue),
-        ),
-      ),
+      home: SignUpPage(
+          signUpUseCase:
+              new SignUpUseCase(userRepository: new UserRepository())),
     );
   }
 }

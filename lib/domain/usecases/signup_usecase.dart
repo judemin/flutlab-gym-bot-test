@@ -1,4 +1,4 @@
-import 'package:gym_bot/domain/repository//user_repository.dart';
+import 'package:gym_bot/domain/repository/user_repository.dart';
 
 class SignUpUseCase {
   final UserRepository userRepository;
