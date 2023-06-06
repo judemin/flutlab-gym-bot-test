@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gym_bot/domain/usecases/signup_usecase.dart';
+import 'package:gym_bot/data/models/user_data.dart';
 
 class SignUpPage extends StatefulWidget {
   final SignUpUseCase signUpUseCase;
@@ -19,16 +20,17 @@ class _SignUpPageState extends State<SignUpPage> {
     String email = _emailController.text;
     String password = _passwordController.text;
     String name = _nameController.text;
-
+    UserData userData =
+        new UserData(email: email, password: password, name: name);
     // Presentation Layer에서 Use case 호출
-    widget.signUpUseCase.signUp(email, password, name);
+    widget.signUpUseCase.signUp(userData);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sign Up'),
+        title: Text('Gym-Bot 회원가입'),
       ),
       body: Container(
         padding: EdgeInsets.all(16.0),
@@ -36,20 +38,20 @@ class _SignUpPageState extends State<SignUpPage> {
           children: [
             TextFormField(
               controller: _emailController,
-              decoration: InputDecoration(labelText: 'Email'),
+              decoration: InputDecoration(labelText: '이메일'),
             ),
             TextFormField(
               controller: _passwordController,
-              decoration: InputDecoration(labelText: 'Password'),
+              decoration: InputDecoration(labelText: '비밀번호'),
             ),
             TextFormField(
               controller: _nameController,
-              decoration: InputDecoration(labelText: 'Name'),
+              decoration: InputDecoration(labelText: '이름'),
             ),
             SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: _signUp,
-              child: Text('Sign Up'),
+              child: Text('회원가입'),
             ),
           ],
         ),
