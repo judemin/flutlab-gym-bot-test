@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gym_bot/data/repository/user_repository_impl.dart';
 import 'package:provider/provider.dart';
 import 'package:gym_bot/presentation/screens/signup_page.dart';
 import 'package:gym_bot/domain/usecases/signup_usecase.dart';
@@ -18,8 +17,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: SignUpPage(
-          signUpUseCase:
-              new SignUpUseCase(userRepository: UserRepositoryImpl())),
+          signUpUseCase: new SignUpUseCase(userRepository: UserRepository())),
     );
   }
 }

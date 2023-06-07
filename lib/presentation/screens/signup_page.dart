@@ -20,8 +20,9 @@ class _SignUpPageState extends State<SignUpPage> {
     String email = _emailController.text;
     String password = _passwordController.text;
     String name = _nameController.text;
+
     UserData userData =
-        new UserData(email: email, password: password, name: name);
+        UserData(id: -1, email: email, password: password, name: name);
     // Presentation Layer에서 Use case 호출
     widget.signUpUseCase.signUp(userData);
   }
