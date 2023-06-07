@@ -21,8 +21,7 @@ class _SignUpPageState extends State<SignUpPage> {
     String password = _passwordController.text;
     String name = _nameController.text;
 
-    UserData userData =
-        UserData(id: -1, email: email, password: password, name: name);
+    UserData userData = UserData(email: email, password: password, name: name);
     // Presentation Layer에서 Use case 호출
     widget.signUpUseCase.signUp(userData);
   }
@@ -34,7 +33,7 @@ class _SignUpPageState extends State<SignUpPage> {
         title: Text('Gym-Bot 회원가입'),
       ),
       body: Container(
-        padding: EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(30.0),
         child: Column(
           children: [
             TextFormField(
@@ -54,6 +53,11 @@ class _SignUpPageState extends State<SignUpPage> {
               onPressed: _signUp,
               child: Text('회원가입'),
             ),
+            SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: _signUp,
+              child: Text('로그인'),
+            )
           ],
         ),
       ),

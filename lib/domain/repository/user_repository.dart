@@ -3,6 +3,7 @@ import 'package:gym_bot/data/repository/user_api.dart';
 
 class UserRepository {
   String url = "";
+  bool isSuccess = false;
 
   Future signUp(UserData userData) async {
     url = "https://gym-bot-backend.run.goorm.site/auth/signup";
@@ -11,10 +12,10 @@ class UserRepository {
     int resCode = int.parse("${res.statusCode}");
 
     if (200 <= resCode && resCode < 300) {
-      // 성공적인 response
-      print("${res.body}");
+      isSuccess = true;
     } else {
       // 에러 핸들링
+      print("${res.body}");
     }
   }
 }
