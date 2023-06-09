@@ -38,6 +38,7 @@ dev_dependencies:
   json_annotation: ^4.0.0
   equatable: ^2.0.0
   freezed: ^0.14.0
+  shared_preferences: ^2.1.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gym_bot/data/models/user_data.dart';
+import 'package:gym_bot/data/repository/local_storage_api.dart';
 import 'package:gym_bot/data/repository/user_api.dart';
 import 'dart:convert';
 
@@ -26,10 +27,12 @@ class UserRepository {
 
     var res = await UserAPI().getReq(userData, url, path);
     int resCode = int.parse("${res.statusCode}");
-    print(resCode);
     if (200 <= resCode && resCode < 300) {
       userData.token = json.decode(res.body)['userToken'];
-      print(userData.toString());
+
+      await LocalStorageAPI().setToken(userData.token);
+      String tmp = await LocalStorageAPI().getToken();
+      print("tmp : " + tmp);
     } else {
       // 에러 핸들링
       print("${res.body}");
