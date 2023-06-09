@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:gym_bot/data/models/user_data.dart';
+import 'package:gym_bot/domain/usecases/login_usecase.dart';
 
 class LoginPage extends StatefulWidget {
+  final LoginUseCase loginUseCase;
+
+  LoginPage({required this.loginUseCase});
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-  String? _email;
-  String? _password;
+  String _email = "";
+  String _password = "";
 
   void _submit() {
     // TODO: 로그인 로직 구현하기
-    print('Email: $_email');
-    print('Password: $_password');
+    UserData userData = UserData(email: _email, password: _password, name: "");
+    widget.loginUseCase.login(userData);
   }
 
   @override
@@ -25,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
       body: Padding(
         padding: EdgeInsets.all(20.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             TextField(
               onChanged: (value) {
