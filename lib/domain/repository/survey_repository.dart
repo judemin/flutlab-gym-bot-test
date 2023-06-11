@@ -2,6 +2,8 @@ import 'package:gym_bot/data/models/survey_data.dart';
 import 'package:gym_bot/data/repository/local_storage_api.dart';
 import 'package:gym_bot/data/repository/survey_api.dart';
 
+// flutter에서는 http reponse 400번대를 받지 못함
+// => 해당 사항 구글링하여 해결 필요 (express -> flutter 400x)
 class SurveyRepository {
   String url = "";
   String path = "";

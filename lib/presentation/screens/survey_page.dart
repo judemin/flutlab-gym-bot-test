@@ -66,7 +66,7 @@ class _SurveyPageState extends State<SurveyPage> {
               style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
             ),
             RadioListTile(
-              title: Text('스미스'),
+              title: Text('히히'),
               value: 'smith',
               groupValue: surveyData['machine'],
               onChanged: (value) {
