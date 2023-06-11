@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:gym_bot/presentation/screens/signup_page.dart';
+import 'package:gym_bot/presentation/screens/survey_page.dart';
 import 'package:gym_bot/domain/usecases/signup_usecase.dart';
 import 'package:gym_bot/domain/repository/user_repository.dart';
 
@@ -16,8 +17,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: SignUpPage(
-          signUpUseCase: new SignUpUseCase(userRepository: UserRepository())),
+      home: SurveyApp(),
+      //SignUpPage(signUpUseCase: new SignUpUseCase(userRepository: UserRepository())),
     );
   }
 }
