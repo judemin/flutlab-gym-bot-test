@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:gym_bot/data/models/user_data.dart';
 import 'dart:convert';
 import 'dart:io';

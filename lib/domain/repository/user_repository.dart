@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:gym_bot/data/models/user_data.dart';
 import 'package:gym_bot/data/repository/local_storage_api.dart';
 import 'package:gym_bot/data/repository/user_api.dart';
@@ -32,7 +31,7 @@ class UserRepository {
 
       await LocalStorageAPI().setToken(userData.token);
       String tmp = await LocalStorageAPI().getToken();
-      print("tmp : " + tmp);
+      print("UserRepository : " + tmp);
     } else {
       // 에러 핸들링
       print("${res.body}");

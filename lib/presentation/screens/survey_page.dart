@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gym_bot/data/models/survey_data.dart';
+import 'package:gym_bot/domain/usecases/survey_usecase.dart';
+import 'package:gym_bot/domain/repository/survey_repository.dart';
 
 void main() => runApp(SurveyApp());
 
@@ -22,6 +25,9 @@ class SurveyPage extends StatefulWidget {
 
 class _SurveyPageState extends State<SurveyPage> {
   Map<String, dynamic> surveyData = {};
+  List<String> questions = ['machine', 'extime', 'experienceLevel'];
+  final SurveyUsecase surveyUseCase =
+      SurveyUsecase(surveyRepository: SurveyRepository());
 
   void updateSurveyData(String question, dynamic answer) {
     setState(() {
@@ -30,8 +36,18 @@ class _SurveyPageState extends State<SurveyPage> {
   }
 
   void submitSurvey() {
-    // 설문조사 데이터를 처리하는 로직 추가
-    print(surveyData);
+    for (int i = 0; i < questions.length; i++)
+      if (surveyData[questions[i]] == null) {
+        print("survey_page : Select all questions");
+        return;
+      }
+
+    SurveyData surveymodel = SurveyData(
+      machine: surveyData['machine'],
+      extime: surveyData['extime'],
+      experienceLevel: surveyData['experienceLevel'],
+    );
+    surveyUseCase.addSurvey(surveymodel);
   }
 
   @override
