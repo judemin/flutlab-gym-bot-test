@@ -19,15 +19,29 @@ class _LoginPageState extends State<LoginPage> {
   String _email = "";
   String _password = "";
 
-  Future hangleLogin() async {
+  _LoginPageState() {
+    initTokenCheck();
+  }
+
+  void toSurveyPage() {
+    Navigator.of(context)
+        .pushReplacement(MaterialPageRoute(builder: (context) => SurveyApp()));
+  }
+
+  Future handleLogin() async {
     UserData userData = UserData(email: _email, password: _password, name: "");
     bool isSuccess = await widget.loginUseCase.login(userData);
 
     if (isSuccess) {
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => SurveyApp()));
+      toSurveyPage();
     } else {
       print("Invalid User Auth");
+    }
+  }
+
+  Future initTokenCheck() async {
+    if (await widget.loginUseCase.hasSavedToken()) {
+      toSurveyPage();
     }
   }
 
@@ -66,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             SizedBox(height: 20.0),
             ElevatedButton(
-              onPressed: hangleLogin,
+              onPressed: handleLogin,
               child: Text('로그인'),
             ),
             SizedBox(height: 20.0),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gym_bot/data/models/survey_data.dart';
 import 'package:gym_bot/domain/usecases/survey_usecase.dart';
 import 'package:gym_bot/domain/repository/survey_repository.dart';
+import 'package:gym_bot/presentation/screens/home_page.dart';
 
 void main() => runApp(SurveyApp());
 
@@ -35,7 +36,7 @@ class _SurveyPageState extends State<SurveyPage> {
     });
   }
 
-  void submitSurvey() {
+  Future submitSurvey() async {
     for (int i = 0; i < questions.length; i++)
       if (surveyData[questions[i]] == null) {
         print("survey_page : Select all questions");
@@ -47,7 +48,13 @@ class _SurveyPageState extends State<SurveyPage> {
       extime: surveyData['extime'],
       experienceLevel: surveyData['experienceLevel'],
     );
-    surveyUseCase.addSurvey(surveymodel);
+
+    if (await surveyUseCase.addSurvey(surveymodel)) {
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
+    } else {
+      print("Survey submit err");
+    }
   }
 
   @override
