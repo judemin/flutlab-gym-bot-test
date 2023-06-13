@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gym_bot/domain/usecases/login_usecase.dart';
 import 'package:gym_bot/domain/usecases/signup_usecase.dart';
 import 'package:gym_bot/data/models/user_data.dart';
-import 'package:gym_bot/presentation/screens/login_page.dart';
-import 'package:gym_bot/domain/repository/user_repository.dart';
 
 class SignUpPage extends StatefulWidget {
   final SignUpUseCase signUpUseCase;
@@ -56,19 +53,6 @@ class _SignUpPageState extends State<SignUpPage> {
               onPressed: _signUp,
               child: Text('회원가입'),
             ),
-            SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => LoginPage(
-                          loginUseCase:
-                              LoginUseCase(userRepository: UserRepository()))),
-                );
-              },
-              child: Text('로그인'),
-            )
           ],
         ),
       ),
