@@ -6,7 +6,7 @@ class SurveyUsecase {
 
   SurveyUsecase({required this.surveyRepository});
 
-  void addSurvey(SurveyData surveyData) {
-    surveyRepository.addSurvey(surveyData);
+  Future<bool> addSurvey(SurveyData surveyData) async {
+    return await surveyRepository.addSurvey(surveyData);
   }
 }

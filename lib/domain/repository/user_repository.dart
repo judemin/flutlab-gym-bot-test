@@ -20,7 +20,7 @@ class UserRepository {
     }
   }
 
-  Future login(UserData userData) async {
+  Future<bool> login(UserData userData) async {
     url = "gym-bot-backend.run.goorm.site";
     path = "/auth/login";
 
@@ -32,9 +32,11 @@ class UserRepository {
       await LocalStorageAPI().setToken(userData.token);
       String tmp = await LocalStorageAPI().getToken();
       print("UserRepository : " + tmp);
+      return true;
     } else {
       // 에러 핸들링
       print("${res.body}");
+      return false;
     }
   }
 }

@@ -6,7 +6,7 @@ class LoginUseCase {
 
   LoginUseCase({required this.userRepository});
 
-  void login(UserData userData) {
-    userRepository.login(userData);
+  Future<bool> login(UserData userData) async {
+    return await userRepository.login(userData);
   }
 }

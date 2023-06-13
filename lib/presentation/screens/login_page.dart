@@ -4,6 +4,7 @@ import 'package:gym_bot/domain/repository/user_repository.dart';
 import 'package:gym_bot/domain/usecases/login_usecase.dart';
 import 'package:gym_bot/domain/usecases/signup_usecase.dart';
 import 'package:gym_bot/presentation/screens/signup_page.dart';
+import 'package:gym_bot/presentation/screens/survey_page.dart';
 
 class LoginPage extends StatefulWidget {
   final LoginUseCase loginUseCase;
@@ -18,9 +19,16 @@ class _LoginPageState extends State<LoginPage> {
   String _email = "";
   String _password = "";
 
-  void _submit() {
+  Future hangleLogin() async {
     UserData userData = UserData(email: _email, password: _password, name: "");
-    widget.loginUseCase.login(userData);
+    bool isSuccess = await widget.loginUseCase.login(userData);
+
+    if (isSuccess) {
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => SurveyApp()));
+    } else {
+      print("Invalid User Auth");
+    }
   }
 
   @override
@@ -58,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             SizedBox(height: 20.0),
             ElevatedButton(
-              onPressed: _submit,
+              onPressed: hangleLogin,
               child: Text('로그인'),
             ),
             SizedBox(height: 20.0),

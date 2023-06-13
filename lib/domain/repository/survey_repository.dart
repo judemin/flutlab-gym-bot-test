@@ -19,9 +19,11 @@ class SurveyRepository {
 
     if (200 <= resCode && resCode < 300) {
       print("${res.body}");
+      return true;
     } else {
       // 에러 핸들링
       print("${res.body}");
+      return false;
     }
   }
 }
