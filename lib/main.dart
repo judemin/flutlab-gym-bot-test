@@ -1,17 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gym_bot/domain/usecases/login_usecase.dart';
 import 'package:gym_bot/presentation/screens/login_page.dart';
-import 'package:gym_bot/presentation/screens/figma_login_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:gym_bot/domain/repository/user_repository.dart';
-import 'package:gym_bot/presentation/theme/theme_helper.dart';
 
-void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  ThemeHelper().changeTheme('primary');
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -19,13 +12,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Gym-Bot Test',
-        theme: ThemeData(
-          visualDensity: VisualDensity.standard,
-        ),
-        home: LoginScreen()
-        // home: LoginPage(
-        //     loginUseCase: new LoginUseCase(userRepository: UserRepository())),
-        );
+      title: 'Gym-Bot Test',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: LoginPage(
+          loginUseCase: new LoginUseCase(userRepository: UserRepository())),
+    );
   }
 }
