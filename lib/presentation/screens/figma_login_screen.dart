@@ -26,8 +26,7 @@ class LoginScreen extends StatelessWidget {
                 leading: AppbarImage(
                     height: getSize(24),
                     width: getSize(24),
-                    // svgPath: ImageConstant.imgArrowleft,
-                    svgPath: 'assets/images/img_arrowleft.svg',
+                    svgPath: ImageConstant.imgArrowleft,
                     margin: getMargin(left: 18, top: 15, bottom: 16),
                     onTap: () {
                       onTapArrowleft1(context);
