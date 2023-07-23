@@ -1,13 +1,12 @@
-import 'package:flutter/material.dart';
 import 'package:gym_bot/core/app_export.dart';
-import 'package:gym_bot/presentation/widgets/custom_outlined_button.dart';
+import 'package:gym_bot/presentation/widgets/app_bar/appbar_image.dart';
+import 'package:gym_bot/presentation/widgets/app_bar/appbar_title.dart';
+import 'package:gym_bot/presentation/widgets/app_bar/custom_app_bar.dart';
 import 'package:gym_bot/presentation/widgets/custom_text_form_field.dart';
+import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
-  LoginScreen({Key? key})
-      : super(
-          key: key,
-        );
+  LoginScreen({Key? key}) : super(key: key);
 
   TextEditingController emailController = TextEditingController();
 
@@ -18,97 +17,93 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        backgroundColor: theme.colorScheme.onPrimary,
-        resizeToAvoidBottomInset: false,
-        body: Form(
-          key: _formKey,
-          child: Container(
-            width: double.maxFinite,
-            padding: getPadding(
-              all: 16,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                CustomImageView(
-                  svgPath: ImageConstant.imgReply,
-                  height: getVerticalSize(
-                    11,
-                  ),
-                  width: getHorizontalSize(
-                    12,
-                  ),
-                ),
-                Padding(
-                  padding: getPadding(
-                    top: 33,
-                  ),
-                  child: Text(
-                    "Log in",
-                    overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.left,
-                    style: theme.textTheme.displaySmall,
-                  ),
-                ),
-                CustomTextFormField(
-                  focusNode: FocusNode(),
-                  autofocus: true,
-                  controller: emailController,
-                  margin: getMargin(
-                    top: 29,
-                  ),
-                  contentPadding: getPadding(
-                    left: 16,
-                    top: 17,
-                    right: 16,
-                    bottom: 17,
-                  ),
-                  textStyle: theme.textTheme.bodyMedium!,
-                  hintText: "jane@example.com",
-                  hintStyle: theme.textTheme.bodyMedium!,
-                  textInputAction: TextInputAction.next,
-                  textInputType: TextInputType.emailAddress,
-                  filled: true,
-                  fillColor: theme.colorScheme.onPrimary,
-                ),
-                CustomTextFormField(
-                  focusNode: FocusNode(),
-                  autofocus: true,
-                  controller: languageController,
-                  margin: getMargin(
-                    top: 16,
-                  ),
-                  contentPadding: getPadding(
-                    all: 17,
-                  ),
-                  textStyle: theme.textTheme.bodyMedium!,
-                  hintText: "••••••••••••",
-                  hintStyle: theme.textTheme.bodyMedium!,
-                  filled: true,
-                  fillColor: theme.colorScheme.onPrimary,
-                ),
-                CustomOutlinedButton(
-                  text: "Log in".toUpperCase(),
-                  margin: getMargin(
-                    top: 16,
-                    bottom: 5,
-                  ),
-                  buttonStyle: ButtonThemeHelper.outlinePrimary.copyWith(
-                      fixedSize: MaterialStateProperty.all<Size>(Size(
-                    double.maxFinite,
-                    getVerticalSize(
-                      52,
-                    ),
-                  ))),
-                  buttonTextStyle: theme.textTheme.labelLarge!,
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
+        child: Scaffold(
+            backgroundColor: theme.colorScheme.onPrimary,
+            resizeToAvoidBottomInset: false,
+            appBar: CustomAppBar(
+                height: getVerticalSize(84),
+                leadingWidth: 42,
+                leading: AppbarImage(
+                    height: getSize(24),
+                    width: getSize(24),
+                    svgPath: ImageConstant.imgArrowleft,
+                    margin: getMargin(left: 18, top: 15, bottom: 16),
+                    onTap: () {
+                      onTapArrowleft1(context);
+                    }),
+                centerTitle: true,
+                title: AppbarTitle(text: "athleo")),
+            body: Form(
+                key: _formKey,
+                child: Container(
+                    width: double.maxFinite,
+                    padding: getPadding(left: 16, top: 86, right: 16),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text("Log in",
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: TextAlign.left,
+                                  style: theme.textTheme.displaySmall)),
+                          CustomTextFormField(
+                              focusNode: FocusNode(),
+                              autofocus: true,
+                              controller: emailController,
+                              margin: getMargin(top: 22),
+                              contentPadding: getPadding(all: 17),
+                              textStyle: TextThemeHelper.bodyMediumBlack900,
+                              hintText: "jane@example.com",
+                              hintStyle: TextThemeHelper.bodyMediumBlack900,
+                              textInputAction: TextInputAction.next,
+                              textInputType: TextInputType.emailAddress,
+                              filled: true,
+                              fillColor: appTheme.whiteA700),
+                          CustomTextFormField(
+                              focusNode: FocusNode(),
+                              autofocus: true,
+                              controller: languageController,
+                              margin: getMargin(top: 16),
+                              contentPadding: getPadding(all: 17),
+                              textStyle: TextThemeHelper.bodyMediumOnPrimary,
+                              hintText: "••••••••••••",
+                              hintStyle: TextThemeHelper.bodyMediumOnPrimary,
+                              filled: true,
+                              fillColor: appTheme.whiteA700),
+                          Container(
+                              height: getVerticalSize(52),
+                              width: getHorizontalSize(361),
+                              margin: getMargin(top: 17),
+                              decoration: BoxDecoration(
+                                  color: appTheme.teal500,
+                                  borderRadius: BorderRadius.circular(
+                                      getHorizontalSize(6)),
+                                  border: Border.all(
+                                      color: appTheme.teal500,
+                                      width: getHorizontalSize(2)))),
+                          Padding(
+                              padding: getPadding(top: 46),
+                              child: Text("아이디 찾기",
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: TextAlign.left,
+                                  style: theme.textTheme.bodyMedium!.copyWith(
+                                      decoration: TextDecoration.underline))),
+                          Padding(
+                              padding: getPadding(top: 15, bottom: 5),
+                              child: Text("비밀번호 재설정",
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: TextAlign.left,
+                                  style: theme.textTheme.bodyMedium!.copyWith(
+                                      decoration: TextDecoration.underline)))
+                        ])))));
+  }
+
+  /// Navigates back to the previous screen.
+  ///
+  /// This function takes a [BuildContext] object as a parameter, which is used
+  /// to navigate back to the previous screen.
+  onTapArrowleft1(BuildContext context) {
+    Navigator.pop(context);
   }
 }
