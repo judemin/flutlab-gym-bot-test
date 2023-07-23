@@ -29,7 +29,7 @@ class RegisterStep1Screen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           CustomImageView(
-                              svgPath: ImageConstant.imgReply,
+                              //   svgPath: ImageConstant.imgReply,
                               height: getVerticalSize(11),
                               width: getHorizontalSize(12)),
                           Padding(
