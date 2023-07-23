@@ -6,11 +6,44 @@ class AppDecoration {
         color: theme.colorScheme.onPrimary,
       );
   static BoxDecoration get fill1 => BoxDecoration(
-        color: theme.colorScheme.background,
+        color: appTheme.whiteA700,
+      );
+  static BoxDecoration get txtOutline => BoxDecoration(
+        color: appTheme.whiteA700,
+        border: Border.all(
+          color: appTheme.blueGray700,
+          width: getHorizontalSize(
+            1,
+          ),
+        ),
+      );
+  static BoxDecoration get txtOutline2 => BoxDecoration(
+        color: appTheme.greenA700,
+        border: Border.all(
+          color: appTheme.greenA700,
+          width: getHorizontalSize(
+            2,
+          ),
+        ),
+      );
+  static BoxDecoration get txtOutline1 => BoxDecoration(
+        color: appTheme.amberA400,
+        border: Border.all(
+          color: appTheme.amberA400,
+          width: getHorizontalSize(
+            2,
+          ),
+        ),
       );
 }
 
-class BorderRadiusStyle {}
+class BorderRadiusStyle {
+  static BorderRadius txtRoundedBorder6 = BorderRadius.circular(
+    getHorizontalSize(
+      6,
+    ),
+  );
+}
 
 // Comment/Uncomment the below code based on your Flutter SDK version.
 

@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:gym_bot/core/app_export.dart';
+import 'package:flutter/material.dart';
 
 class CustomTextFormField extends StatelessWidget {
   CustomTextFormField({
@@ -122,30 +122,50 @@ class CustomTextFormField extends StatelessWidget {
         contentPadding: contentPadding,
         border: defaultBorderDecoration ??
             OutlineInputBorder(
+              borderRadius: BorderRadius.circular(
+                getHorizontalSize(
+                  6.00,
+                ),
+              ),
               borderSide: BorderSide(
-                color: theme.colorScheme.primary,
-                width: 2,
+                color: appTheme.gray700,
+                width: 1,
               ),
             ),
         enabledBorder: enabledBorderDecoration ??
             OutlineInputBorder(
+              borderRadius: BorderRadius.circular(
+                getHorizontalSize(
+                  6.00,
+                ),
+              ),
               borderSide: BorderSide(
-                color: theme.colorScheme.primary,
-                width: 2,
+                color: appTheme.gray700,
+                width: 1,
               ),
             ),
         focusedBorder: focusedBorderDecoration ??
             OutlineInputBorder(
+              borderRadius: BorderRadius.circular(
+                getHorizontalSize(
+                  6.00,
+                ),
+              ),
               borderSide: BorderSide(
-                color: theme.colorScheme.primary,
-                width: 2,
+                color: appTheme.gray700,
+                width: 1,
               ),
             ),
         disabledBorder: disabledBorderDecoration ??
             OutlineInputBorder(
+              borderRadius: BorderRadius.circular(
+                getHorizontalSize(
+                  6.00,
+                ),
+              ),
               borderSide: BorderSide(
-                color: theme.colorScheme.primary,
-                width: 2,
+                color: appTheme.gray700,
+                width: 1,
               ),
             ),
       );
