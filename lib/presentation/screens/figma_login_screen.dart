@@ -26,7 +26,8 @@ class LoginScreen extends StatelessWidget {
                 leading: AppbarImage(
                     height: getSize(24),
                     width: getSize(24),
-                    svgPath: ImageConstant.imgArrowleft,
+                    // svgPath: ImageConstant.imgArrowleft,
+                    svgPath: 'assets/images/img_arrowleft.svg',
                     margin: getMargin(left: 18, top: 15, bottom: 16),
                     onTap: () {
                       onTapArrowleft1(context);
@@ -71,17 +72,55 @@ class LoginScreen extends StatelessWidget {
                               hintStyle: TextThemeHelper.bodyMediumOnPrimary,
                               filled: true,
                               fillColor: appTheme.whiteA700),
-                          Container(
-                              height: getVerticalSize(52),
-                              width: getHorizontalSize(361),
-                              margin: getMargin(top: 17),
-                              decoration: BoxDecoration(
-                                  color: appTheme.teal500,
-                                  borderRadius: BorderRadius.circular(
-                                      getHorizontalSize(6)),
-                                  border: Border.all(
-                                      color: appTheme.teal500,
-                                      width: getHorizontalSize(2)))),
+                          SizedBox(
+                            height: getVerticalSize(20),
+                          ),
+                          SizedBox(
+                            height: getVerticalSize(
+                                50), // Add appropriate spacing here
+                            child: GestureDetector(
+                              onTap: () {
+                                // Add your onTap event handling logic here
+                                print('Container tapped!');
+                              },
+                              child: Material(
+                                color: Colors.transparent,
+                                child: Ink(
+                                  decoration: BoxDecoration(
+                                    color: appTheme.teal500,
+                                    borderRadius: BorderRadius.circular(
+                                        getHorizontalSize(6)),
+                                    border: Border.all(
+                                        color: appTheme.teal500,
+                                        width: getHorizontalSize(2)),
+                                  ),
+                                  child: InkWell(
+                                    onTap: () {
+                                      // Add your onTap event handling logic here if needed
+                                      print('Container tapped with splash!');
+                                    },
+                                    borderRadius: BorderRadius.circular(
+                                        getHorizontalSize(6)),
+                                    child: Container(
+                                      height: getVerticalSize(52),
+                                      width: getHorizontalSize(361),
+                                      child: Center(
+                                        child: Text(
+                                          'LOGIN',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white,
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
                           Padding(
                               padding: getPadding(top: 46),
                               child: Text("아이디 찾기",
