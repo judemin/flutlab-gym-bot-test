@@ -2,22 +2,21 @@ import 'package:gym_bot/core/app_export.dart';
 import 'package:gym_bot/presentation/widgets/base_button.dart';
 import 'package:flutter/material.dart';
 
-class CustomOutlinedButton extends BaseButton {
-  CustomOutlinedButton({
+class CustomElevatedButton extends BaseButton {
+  CustomElevatedButton({
     Key? key,
     this.decoration,
     this.leftIcon,
     this.rightIcon,
-    this.label,
+    EdgeInsets? margin,
     VoidCallback? onTap,
     ButtonStyle? buttonStyle,
+    Alignment? alignment,
     ButtonStyle? disabledButtonStyle,
     TextStyle? buttonTextStyle,
     bool? isDisabled,
-    Alignment? alignment,
     double? height,
     double? width,
-    EdgeInsets? margin,
     required String text,
   }) : super(
           text: text,
@@ -27,8 +26,9 @@ class CustomOutlinedButton extends BaseButton {
           disabledButtonStyle: disabledButtonStyle,
           buttonTextStyle: buttonTextStyle,
           height: height,
-          alignment: alignment,
           width: width,
+          alignment: alignment,
+          margin: margin,
         );
 
   final BoxDecoration? decoration;
@@ -37,29 +37,27 @@ class CustomOutlinedButton extends BaseButton {
 
   final Widget? rightIcon;
 
-  final Widget? label;
-
   @override
   Widget build(BuildContext context) {
     return alignment != null
         ? Align(
             alignment: alignment ?? Alignment.center,
-            child: buildOutlinedButtonWidget,
+            child: buildElevatedButtonWidget,
           )
-        : buildOutlinedButtonWidget;
+        : buildElevatedButtonWidget;
   }
 
-  Widget get buildOutlinedButtonWidget => Container(
+  ButtonStyle? get elevatedButtonStyle =>
+      (isDisabled ?? false) ? disabledButtonStyle : buttonStyle;
+  Widget get buildElevatedButtonWidget => Container(
         height: this.height,
-        width: this.width,
         margin: margin,
+        width: this.width,
         decoration: decoration,
-        child: OutlinedButton(
-          style: (isDisabled ?? false)
-              ? disabledButtonStyle
-              : buttonStyle!.copyWith(
-                  visualDensity: VisualDensity(horizontal: -4, vertical: -4),
-                ),
+        child: ElevatedButton(
+          style: elevatedButtonStyle!.copyWith(
+            visualDensity: VisualDensity(horizontal: -4, vertical: -4),
+          ),
           onPressed: onTap ?? () {},
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
