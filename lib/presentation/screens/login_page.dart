@@ -165,23 +165,24 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                             ),
                           ),
-                          Ink(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(0),
-                            ),
-                            child: InkWell(
-                              onTap: () {
-                                print("tapped on text");
-                              },
-                              child: Padding(
-                                padding: getPadding(top: 46),
-                                child: Text(
-                                  "회원가입",
-                                  overflow: TextOverflow.ellipsis,
-                                  textAlign: TextAlign.left,
-                                  style: theme.textTheme.bodyMedium!.copyWith(
-                                    decoration: TextDecoration.underline,
-                                  ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SignUpPage(
+                                        signUpUseCase: SignUpUseCase(
+                                            userRepository: UserRepository()))),
+                              );
+                            },
+                            child: Padding(
+                              padding: getPadding(top: 46),
+                              child: Text(
+                                "회원가입",
+                                overflow: TextOverflow.ellipsis,
+                                textAlign: TextAlign.left,
+                                style: theme.textTheme.bodyMedium!.copyWith(
+                                  decoration: TextDecoration.underline,
                                 ),
                               ),
                             ),
