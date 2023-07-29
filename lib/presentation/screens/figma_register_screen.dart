@@ -2,14 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:gym_bot/core/app_export.dart';
 import 'package:gym_bot/presentation/widgets/custom_outlined_button.dart';
 import 'package:gym_bot/presentation/widgets/custom_text_form_field.dart';
+import 'package:gym_bot/presentation/widgets/app_bar/appbar_title.dart';
+import 'package:gym_bot/presentation/widgets/app_bar/appbar_image.dart';
+import 'package:gym_bot/presentation/widgets/app_bar/custom_app_bar.dart';
+
+class RegisterStep1Screen extends StatefulWidget {
+  @override
+  regiScreen createState() => regiScreen();
+}
 
 // ignore_for_file: must_be_immutable
-class RegisterStep1Screen extends StatelessWidget {
-  RegisterStep1Screen({Key? key}) : super(key: key);
-
+class regiScreen extends State<RegisterStep1Screen> {
   TextEditingController emailController = TextEditingController();
-
-  TextEditingController languageController = TextEditingController();
+  TextEditingController paswordControlelr = TextEditingController();
+  bool isMarketingAgree = false;
+  bool isLogTraceAgree = false;
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -19,7 +26,20 @@ class RegisterStep1Screen extends StatelessWidget {
         child: Scaffold(
             backgroundColor: theme.colorScheme.onPrimary,
             resizeToAvoidBottomInset: false,
-            body: Form(
+            appBar: CustomAppBar(
+                height: getVerticalSize(84),
+                leadingWidth: 42,
+                leading: AppbarImage(
+                    height: getSize(24),
+                    width: getSize(24),
+                    svgPath: ImageConstant.imgArrowleft,
+                    margin: getMargin(left: 18, top: 15, bottom: 16),
+                    onTap: () {
+                      onTapArrowleft1(context);
+                    }),
+                centerTitle: true,
+                title: AppbarTitle(text: "athleo")),
+            body: SingleChildScrollView(
                 key: _formKey,
                 child: Container(
                     width: double.maxFinite,
@@ -46,7 +66,7 @@ class RegisterStep1Screen extends StatelessWidget {
                               contentPadding: getPadding(
                                   left: 16, top: 17, right: 16, bottom: 17),
                               textStyle: theme.textTheme.bodyMedium!,
-                              hintText: "jane@example.com",
+                              hintText: "e-mail",
                               hintStyle: theme.textTheme.bodyMedium!,
                               textInputAction: TextInputAction.next,
                               textInputType: TextInputType.emailAddress,
@@ -55,27 +75,137 @@ class RegisterStep1Screen extends StatelessWidget {
                           CustomTextFormField(
                               focusNode: FocusNode(),
                               autofocus: true,
-                              controller: languageController,
+                              controller: paswordControlelr,
                               margin: getMargin(top: 16),
                               contentPadding: getPadding(all: 17),
                               textStyle: theme.textTheme.bodyMedium!,
-                              hintText: "••••••••••••",
+                              hintText: "password",
                               hintStyle: theme.textTheme.bodyMedium!,
                               filled: true,
                               fillColor: theme.colorScheme.onPrimary),
-                          CustomOutlinedButton(
-                              text: "next".toUpperCase(),
-                              margin: getMargin(top: 16, bottom: 5),
-                              buttonStyle: ButtonThemeHelper.outlinePrimary
-                                  .copyWith(
-                                      fixedSize:
-                                          MaterialStateProperty.all<Size>(Size(
-                                              double.maxFinite,
-                                              getVerticalSize(52)))),
-                              buttonTextStyle: theme.textTheme.labelLarge!,
-                              onTap: () {
-                                // onTapNext(context);
-                              })
+                          CustomTextFormField(
+                              focusNode: FocusNode(),
+                              autofocus: true,
+                              controller: paswordControlelr,
+                              margin: getMargin(top: 16),
+                              contentPadding: getPadding(all: 17),
+                              textStyle: theme.textTheme.bodyMedium!,
+                              hintText: "name",
+                              hintStyle: theme.textTheme.bodyMedium!,
+                              filled: true,
+                              fillColor: theme.colorScheme.onPrimary),
+                          CustomTextFormField(
+                              focusNode: FocusNode(),
+                              autofocus: true,
+                              controller: paswordControlelr,
+                              margin: getMargin(top: 16),
+                              contentPadding: getPadding(all: 17),
+                              textStyle: theme.textTheme.bodyMedium!,
+                              hintText: "region",
+                              hintStyle: theme.textTheme.bodyMedium!,
+                              filled: true,
+                              fillColor: theme.colorScheme.onPrimary),
+                          CustomTextFormField(
+                              focusNode: FocusNode(),
+                              autofocus: true,
+                              controller: paswordControlelr,
+                              margin: getMargin(top: 16),
+                              contentPadding: getPadding(all: 17),
+                              textStyle: theme.textTheme.bodyMedium!,
+                              hintText: "age",
+                              hintStyle: theme.textTheme.bodyMedium!,
+                              filled: true,
+                              fillColor: theme.colorScheme.onPrimary),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Flexible(
+                                child: Theme(
+                                  data: Theme.of(context).copyWith(
+                                    unselectedWidgetColor:
+                                        theme.colorScheme.bodyMedium,
+                                  ),
+                                  child: CheckboxListTile(
+                                    title: Text(
+                                      '마케팅 수신 동의',
+                                      style: theme.textTheme.bodyMedium!,
+                                    ),
+                                    value: isMarketingAgree,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        isMarketingAgree = value ?? false;
+                                      });
+                                    },
+                                    dense: true,
+                                  ),
+                                ),
+                              ),
+                              Flexible(
+                                child: CheckboxListTile(
+                                  title: Text(
+                                    '로그 추적 동의',
+                                    style: theme.textTheme.bodyMedium!,
+                                  ),
+                                  value: isLogTraceAgree,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      isLogTraceAgree = value ?? false;
+                                    });
+                                  },
+                                  dense: true,
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: getVerticalSize(16),
+                          ),
+                          SizedBox(
+                            height: getVerticalSize(
+                                50), // Add appropriate spacing here
+                            child: GestureDetector(
+                              child: Material(
+                                color: Colors.transparent,
+                                child: Ink(
+                                  decoration: BoxDecoration(
+                                    color: appTheme.blueGray700,
+                                    borderRadius: BorderRadius.circular(
+                                        getHorizontalSize(6)),
+                                    border: Border.all(
+                                        color: appTheme.blueGray700,
+                                        width: getHorizontalSize(2)),
+                                  ),
+                                  child: InkWell(
+                                    onTap: () {
+                                      // Add your onTap event handling logic here if needed
+                                      print('InkWell tapped!');
+                                    },
+                                    borderRadius: BorderRadius.circular(
+                                        getHorizontalSize(6)),
+                                    child: Container(
+                                      height: getVerticalSize(52),
+                                      width: getHorizontalSize(361),
+                                      child: Center(
+                                        child: Text(
+                                          'REGISTER',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white,
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
                         ])))));
+  }
+
+  onTapArrowleft1(BuildContext context) {
+    Navigator.pop(context);
   }
 }

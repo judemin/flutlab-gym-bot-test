@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gym_bot/domain/usecases/login_usecase.dart';
 import 'package:gym_bot/presentation/screens/login_page.dart';
+import 'package:gym_bot/presentation/screens/figma_register_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:gym_bot/domain/repository/user_repository.dart';
 import 'package:gym_bot/presentation/theme/theme_helper.dart';
@@ -18,13 +19,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Gym-Bot Test',
-      theme: ThemeData(
-        visualDensity: VisualDensity.standard,
-      ),
-      // home: LoginScreen()
-      home: LoginPage(
-          loginUseCase: new LoginUseCase(userRepository: UserRepository())),
-    );
+        title: 'Gym-Bot Test',
+        theme: ThemeData(
+          visualDensity: VisualDensity.standard,
+        ),
+        home: RegisterStep1Screen()
+        // home: LoginPage(
+        //     loginUseCase: new LoginUseCase(userRepository: UserRepository())),
+        );
   }
 }
