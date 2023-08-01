@@ -116,46 +116,43 @@ class regiScreen extends State<RegisterStep1Screen> {
                               hintStyle: theme.textTheme.bodyMedium!,
                               filled: true,
                               fillColor: theme.colorScheme.onPrimary),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Flexible(
-                                child: Theme(
-                                  data: Theme.of(context).copyWith(
-                                    unselectedWidgetColor:
-                                        theme.colorScheme.bodyMedium,
-                                  ),
-                                  child: CheckboxListTile(
-                                    title: Text(
-                                      '마케팅 수신 동의',
-                                      style: theme.textTheme.bodyMedium!,
-                                    ),
-                                    value: isMarketingAgree,
-                                    onChanged: (value) {
-                                      setState(() {
-                                        isMarketingAgree = value ?? false;
-                                      });
-                                    },
-                                    dense: true,
-                                  ),
-                                ),
+                          Theme(
+                            data: Theme.of(context).copyWith(
+                              unselectedWidgetColor:
+                                  theme.colorScheme.onPrimaryContainer,
+                            ),
+                            child: CheckboxListTile(
+                              title: Text(
+                                '마케팅 정보 수신 동의',
+                                style: theme.textTheme.bodyMedium!,
                               ),
-                              Flexible(
-                                child: CheckboxListTile(
-                                  title: Text(
-                                    '로그 추적 동의',
-                                    style: theme.textTheme.bodyMedium!,
-                                  ),
-                                  value: isLogTraceAgree,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      isLogTraceAgree = value ?? false;
-                                    });
-                                  },
-                                  dense: true,
-                                ),
+                              value: isMarketingAgree,
+                              onChanged: (value) {
+                                setState(() {
+                                  isMarketingAgree = value ?? false;
+                                });
+                              },
+                              dense: true,
+                            ),
+                          ),
+                          Theme(
+                            data: Theme.of(context).copyWith(
+                              unselectedWidgetColor:
+                                  theme.colorScheme.onPrimaryContainer,
+                            ),
+                            child: CheckboxListTile(
+                              title: Text(
+                                '사용자 로그 추적 동의',
+                                style: theme.textTheme.bodyMedium!,
                               ),
-                            ],
+                              value: isLogTraceAgree,
+                              onChanged: (value) {
+                                setState(() {
+                                  isLogTraceAgree = value ?? false;
+                                });
+                              },
+                              dense: true,
+                            ),
                           ),
                           SizedBox(
                             height: getVerticalSize(16),
