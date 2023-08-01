@@ -8,7 +8,7 @@ class SurveyAPI {
       SurveyData surveyData, String token, String url) async {
     var body = jsonEncode(surveyData.toJsonWithToken(token));
 
-    var res = await http.post(Uri.encodeFull(url),
+    var res = await http.post(Uri.parse(url),
         headers: {"Content-Type": "application/json"}, body: body);
 
     return res;

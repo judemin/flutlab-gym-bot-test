@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 class UserData {
   UserData({
     required this.email,
@@ -10,12 +12,20 @@ class UserData {
   late final String email;
   late final String password;
   late final String name;
+  late final String region;
+  late final int age;
+  late final bool isMarketingAgree;
+  late final bool isLogTraceAgree;
 
   UserData.fromJson(Map<String, dynamic> json) {
     token = json['token'];
     email = json['email'];
     password = json['password'];
     name = json['name'];
+    region = json['region'];
+    age = json['age'];
+    isMarketingAgree = json['isMarketingAgree'];
+    isLogTraceAgree = json['isLogTraceAgree'];
   }
 
   Map<String, dynamic> toJson() {
@@ -24,6 +34,10 @@ class UserData {
     _data['email'] = email;
     _data['password'] = password;
     _data['name'] = name;
+    _data['region'] = region;
+    _data['age'] = age;
+    _data['isMarketingAgree'] = isMarketingAgree;
+    _data['isLogTraceAgree'] = isLogTraceAgree;
     return _data;
   }
 

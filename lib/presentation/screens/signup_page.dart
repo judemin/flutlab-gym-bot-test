@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:gym_bot/core/app_export.dart';
 import 'package:gym_bot/domain/usecases/signup_usecase.dart';
@@ -20,6 +22,8 @@ class _SignUpPageState extends State<SignUpPage> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _nameController = TextEditingController();
+  TextEditingController _regionController = TextEditingController();
+  TextEditingController _ageController = TextEditingController();
   bool isMarketingAgree = false;
   bool isLogTraceAgree = false;
 
@@ -29,6 +33,8 @@ class _SignUpPageState extends State<SignUpPage> {
     String email = _emailController.text;
     String password = _passwordController.text;
     String name = _nameController.text;
+    String region = _regionController.text;
+    int age = int.parse(_ageController.text);
 
     UserData userData = UserData(email: email, password: password, name: name);
     // Presentation Layer에서 Use case 호출
@@ -101,7 +107,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           CustomTextFormField(
                               focusNode: FocusNode(),
                               autofocus: true,
-                              controller: _passwordController,
+                              controller: _nameController,
                               margin: getMargin(top: 16),
                               contentPadding: getPadding(all: 17),
                               textStyle: theme.textTheme.bodyMedium!,
@@ -112,7 +118,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           CustomTextFormField(
                               focusNode: FocusNode(),
                               autofocus: true,
-                              controller: _passwordController,
+                              controller: _regionController,
                               margin: getMargin(top: 16),
                               contentPadding: getPadding(all: 17),
                               textStyle: theme.textTheme.bodyMedium!,
@@ -123,7 +129,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           CustomTextFormField(
                               focusNode: FocusNode(),
                               autofocus: true,
-                              controller: _passwordController,
+                              controller: _ageController,
                               margin: getMargin(top: 16),
                               contentPadding: getPadding(all: 17),
                               textStyle: theme.textTheme.bodyMedium!,

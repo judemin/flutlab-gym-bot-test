@@ -8,7 +8,7 @@ class UserAPI {
   Future<http.Response> postReq(UserData userData, String url) async {
     var body = jsonEncode(userData.toJson());
 
-    var res = await http.post(url,
+    var res = await http.post(Uri.parse(url),
         headers: {"Content-Type": "application/json"}, body: body);
 
     return res;
