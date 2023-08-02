@@ -22,6 +22,7 @@ class _SignUpPageState extends State<SignUpPage> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _nameController = TextEditingController();
+  TextEditingController _phoneNumberController = TextEditingController();
   TextEditingController _regionController = TextEditingController();
   TextEditingController _ageController = TextEditingController();
   bool isMarketingAgree = false;
@@ -33,11 +34,24 @@ class _SignUpPageState extends State<SignUpPage> {
     String email = _emailController.text;
     String password = _passwordController.text;
     String name = _nameController.text;
+    String phoneNumber = _phoneNumberController.text;
     String region = _regionController.text;
     int age = int.parse(_ageController.text);
 
-    UserData userData = UserData(email: email, password: password, name: name);
-    // Presentation Layer에서 Use case 호출
+    UserData userData = UserData(
+        email: email,
+        password: password,
+        name: name,
+    );
+
+    userData.initData(
+        phoneNumber: phoneNumber,
+        region: region,
+        age: age,
+        isMarketingAgree: isMarketingAgree,
+        isLogTraceAgree: isLogTraceAgree
+    );
+
     widget.signUpUseCase.signUp(userData);
   }
 
@@ -112,6 +126,17 @@ class _SignUpPageState extends State<SignUpPage> {
                               contentPadding: getPadding(all: 17),
                               textStyle: theme.textTheme.bodyMedium!,
                               hintText: "name",
+                              hintStyle: theme.textTheme.bodyMedium!,
+                              filled: true,
+                              fillColor: theme.colorScheme.onPrimary),
+                          CustomTextFormField(
+                              focusNode: FocusNode(),
+                              autofocus: true,
+                              controller: _phoneNumberController,
+                              margin: getMargin(top: 16),
+                              contentPadding: getPadding(all: 17),
+                              textStyle: theme.textTheme.bodyMedium!,
+                              hintText: "phone number",
                               hintStyle: theme.textTheme.bodyMedium!,
                               filled: true,
                               fillColor: theme.colorScheme.onPrimary),
@@ -196,7 +221,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   child: InkWell(
                                     onTap: () {
                                       // Add your onTap event handling logic here if needed
-                                      print('InkWell tapped!');
+                                      _signUp();
                                     },
                                     borderRadius: BorderRadius.circular(
                                         getHorizontalSize(6)),
