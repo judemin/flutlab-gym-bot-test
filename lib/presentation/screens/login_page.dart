@@ -1,6 +1,7 @@
+import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:gym_bot/core/app_export.dart';
-import 'package:gym_bot/presentation/widgets/app_bar/appbar_image.dart';
 import 'package:gym_bot/presentation/widgets/app_bar/appbar_title.dart';
 import 'package:gym_bot/presentation/widgets/app_bar/custom_app_bar.dart';
 import 'package:gym_bot/presentation/widgets/custom_text_form_field.dart';
@@ -10,6 +11,8 @@ import 'package:gym_bot/domain/usecases/login_usecase.dart';
 import 'package:gym_bot/domain/usecases/signup_usecase.dart';
 import 'package:gym_bot/presentation/screens/signup_page.dart';
 import 'package:gym_bot/presentation/screens/survey_page.dart';
+import 'package:kakao_flutter_sdk_user/kakao_flutter_sdk_user.dart';
+import 'package:http/http.dart' as http;
 
 class LoginPage extends StatefulWidget {
   final LoginUseCase loginUseCase;
@@ -31,12 +34,7 @@ class _LoginPageState extends State<LoginPage> {
     initTokenCheck();
   }
 
-  void toSurveyPage() {
-    Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (context) => SurveyApp()));
-  }
-
-  Future handleLogin() async {
+  Future _handleLogin() async {
     UserData userData = UserData(
         email: emailController.text,
         password: passwordController.text,
@@ -51,9 +49,33 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
+  Future _signInWithKakao() async {
+    try {
+      bool isInstalled = await isKakaoTalkInstalled();
+
+      OAuthToken token = isInstalled
+          ? await UserApi.instance.loginWithKakaoTalk()
+          : await UserApi.instance.loginWithKakaoAccount();
+
+      final url = Uri.https('kapi.kakao.com', '/v2/user/me');
+
+      final response = await http.get(
+        url,
+        headers: {
+          HttpHeaders.authorizationHeader: 'Bearer ${token.accessToken}'
+        },
+      );
+
+      final profileInfo = json.decode(response.body);
+      print(profileInfo.toString());
+    } catch (error) {
+      print('카카오톡으로 로그인 실패 $error');
+    }
+  }
+
   Future initTokenCheck() async {
     if (await widget.loginUseCase.hasSavedToken()) {
-      toSurveyPage();
+      // 저장된 로그인 토큰 정보가 있을 경우
     }
   }
 
@@ -139,7 +161,7 @@ class _LoginPageState extends State<LoginPage> {
                                   child: InkWell(
                                     onTap: () {
                                       // Add your onTap event handling logic here if needed
-                                      handleLogin();
+                                      _handleLogin();
                                     },
                                     borderRadius: BorderRadius.circular(
                                         getHorizontalSize(6)),
@@ -150,7 +172,8 @@ class _LoginPageState extends State<LoginPage> {
                                         child: Text(
                                           'LOGIN',
                                           textAlign: TextAlign.center,
-                                          style: theme.textTheme.displaySmall!.copyWith(
+                                          style: theme.textTheme.displaySmall!
+                                              .copyWith(
                                             fontWeight: FontWeight.bold,
                                             fontSize: getFontSize(
                                               20,
@@ -169,9 +192,10 @@ class _LoginPageState extends State<LoginPage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => SignUpPage(
-                                        signUpUseCase: SignUpUseCase(
-                                            userRepository: UserRepository()))),
+                                    builder: (context) =>
+                                        SignUpPage(
+                                            signUpUseCase: SignUpUseCase(
+                                                userRepository: UserRepository()))),
                               );
                             },
                             child: Padding(
@@ -240,7 +264,7 @@ class _LoginPageState extends State<LoginPage> {
                                   child: InkWell(
                                     onTap: () {
                                       // Add your onTap event handling logic here if needed
-                                      handleLogin();
+                                      _signInWithKakao();
                                     },
                                     borderRadius: BorderRadius.circular(
                                         getHorizontalSize(6)),
@@ -251,7 +275,8 @@ class _LoginPageState extends State<LoginPage> {
                                         child: Text(
                                           '카카오 로그인',
                                           textAlign: TextAlign.center,
-                                          style: theme.textTheme.displaySmall!.copyWith(
+                                          style: theme.textTheme.displaySmall!
+                                              .copyWith(
                                             fontWeight: FontWeight.bold,
                                             fontSize: getFontSize(
                                               17,
@@ -287,7 +312,7 @@ class _LoginPageState extends State<LoginPage> {
                                   child: InkWell(
                                     onTap: () {
                                       // Add your onTap event handling logic here if needed
-                                      handleLogin();
+                                      _handleLogin();
                                     },
                                     borderRadius: BorderRadius.circular(
                                         getHorizontalSize(6)),
@@ -298,7 +323,8 @@ class _LoginPageState extends State<LoginPage> {
                                         child: Text(
                                           '네이버 로그인',
                                           textAlign: TextAlign.center,
-                                          style: theme.textTheme.displaySmall!.copyWith(
+                                          style: theme.textTheme.displaySmall!
+                                              .copyWith(
                                             fontWeight: FontWeight.bold,
                                             fontSize: getFontSize(
                                               17,
@@ -334,7 +360,7 @@ class _LoginPageState extends State<LoginPage> {
                                   child: InkWell(
                                     onTap: () {
                                       // Add your onTap event handling logic here if needed
-                                      handleLogin();
+                                      _handleLogin();
                                     },
                                     borderRadius: BorderRadius.circular(
                                         getHorizontalSize(6)),
@@ -345,7 +371,8 @@ class _LoginPageState extends State<LoginPage> {
                                         child: Text(
                                           'GOOGLE 로그인',
                                           textAlign: TextAlign.center,
-                                          style: theme.textTheme.displaySmall!.copyWith(
+                                          style: theme.textTheme.displaySmall!
+                                              .copyWith(
                                             color: appTheme.blueGray700,
                                             fontWeight: FontWeight.bold,
                                             fontSize: getFontSize(
