@@ -15,6 +15,7 @@ class LoginPage extends StatefulWidget {
   final LoginUseCase loginUseCase;
 
   LoginPage({required this.loginUseCase});
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -85,7 +86,7 @@ class _LoginPageState extends State<LoginPage> {
                         children: [
                           Align(
                               alignment: Alignment.centerLeft,
-                              child: Text("Log in",
+                              child: Text("LOG IN",
                                   overflow: TextOverflow.ellipsis,
                                   textAlign: TextAlign.left,
                                   style: theme.textTheme.displaySmall)),
@@ -123,10 +124,7 @@ class _LoginPageState extends State<LoginPage> {
                             height: getVerticalSize(
                                 50), // Add appropriate spacing here
                             child: GestureDetector(
-                              onTap: () {
-                                // Add your onTap event handling logic here
-                                print('Container tapped!');
-                              },
+                              onTap: () {},
                               child: Material(
                                 color: Colors.transparent,
                                 child: Ink(
@@ -152,10 +150,11 @@ class _LoginPageState extends State<LoginPage> {
                                         child: Text(
                                           'LOGIN',
                                           textAlign: TextAlign.center,
-                                          style: TextStyle(
+                                          style: theme.textTheme.displaySmall!.copyWith(
                                             fontWeight: FontWeight.bold,
-                                            color: Colors.white,
-                                            fontSize: 16,
+                                            fontSize: getFontSize(
+                                              20,
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -176,7 +175,7 @@ class _LoginPageState extends State<LoginPage> {
                               );
                             },
                             child: Padding(
-                              padding: getPadding(top: 46),
+                              padding: getPadding(top: 15),
                               child: Text(
                                 "회원가입",
                                 overflow: TextOverflow.ellipsis,
@@ -193,7 +192,35 @@ class _LoginPageState extends State<LoginPage> {
                                   overflow: TextOverflow.ellipsis,
                                   textAlign: TextAlign.left,
                                   style: theme.textTheme.bodyMedium!.copyWith(
-                                      decoration: TextDecoration.underline)))
+                                      decoration: TextDecoration.underline))),
+                          Padding(
+                            padding: EdgeInsets.all(16.0),
+                            // Choose the desired padding value
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Divider(
+                                    color: theme.colorScheme.onPrimaryContainer,
+                                    thickness: 1,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 10),
+                                  child: Text("OR",
+                                      overflow: TextOverflow.ellipsis,
+                                      textAlign: TextAlign.left,
+                                      style: theme.textTheme.bodyMedium!
+                                          .copyWith()),
+                                ),
+                                Expanded(
+                                  child: Divider(
+                                    color: theme.colorScheme.onPrimaryContainer,
+                                    thickness: 1,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ])))));
   }
 
