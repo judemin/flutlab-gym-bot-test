@@ -129,11 +129,11 @@ class _LoginPageState extends State<LoginPage> {
                                 color: Colors.transparent,
                                 child: Ink(
                                   decoration: BoxDecoration(
-                                    color: appTheme.teal500,
+                                    color: appTheme.blueGray700,
                                     borderRadius: BorderRadius.circular(
                                         getHorizontalSize(6)),
                                     border: Border.all(
-                                        color: appTheme.teal500,
+                                        color: appTheme.blueGray700,
                                         width: getHorizontalSize(2)),
                                   ),
                                   child: InkWell(
@@ -194,7 +194,7 @@ class _LoginPageState extends State<LoginPage> {
                                   style: theme.textTheme.bodyMedium!.copyWith(
                                       decoration: TextDecoration.underline))),
                           Padding(
-                            padding: EdgeInsets.all(16.0),
+                            padding: EdgeInsets.all(20.0),
                             // Choose the desired padding value
                             child: Row(
                               children: [
@@ -219,6 +219,145 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                                 ),
                               ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: getVerticalSize(
+                                50), // Add appropriate spacing here
+                            child: GestureDetector(
+                              onTap: () {},
+                              child: Material(
+                                color: Colors.transparent,
+                                child: Ink(
+                                  decoration: BoxDecoration(
+                                    color: appTheme.amberA400,
+                                    borderRadius: BorderRadius.circular(
+                                        getHorizontalSize(6)),
+                                    border: Border.all(
+                                        color: appTheme.amberA400,
+                                        width: getHorizontalSize(2)),
+                                  ),
+                                  child: InkWell(
+                                    onTap: () {
+                                      // Add your onTap event handling logic here if needed
+                                      handleLogin();
+                                    },
+                                    borderRadius: BorderRadius.circular(
+                                        getHorizontalSize(6)),
+                                    child: Container(
+                                      height: getVerticalSize(52),
+                                      width: getHorizontalSize(361),
+                                      child: Center(
+                                        child: Text(
+                                          '카카오 로그인',
+                                          textAlign: TextAlign.center,
+                                          style: theme.textTheme.displaySmall!.copyWith(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: getFontSize(
+                                              17,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox( //SizedBox for just padding
+                            height: getVerticalSize(20),
+                          ),
+                          SizedBox(
+                            height: getVerticalSize(
+                                50), // Add appropriate spacing here
+                            child: GestureDetector(
+                              onTap: () {},
+                              child: Material(
+                                color: Colors.transparent,
+                                child: Ink(
+                                  decoration: BoxDecoration(
+                                    color: appTheme.teal500,
+                                    borderRadius: BorderRadius.circular(
+                                        getHorizontalSize(6)),
+                                    border: Border.all(
+                                        color: appTheme.teal500,
+                                        width: getHorizontalSize(2)),
+                                  ),
+                                  child: InkWell(
+                                    onTap: () {
+                                      // Add your onTap event handling logic here if needed
+                                      handleLogin();
+                                    },
+                                    borderRadius: BorderRadius.circular(
+                                        getHorizontalSize(6)),
+                                    child: Container(
+                                      height: getVerticalSize(52),
+                                      width: getHorizontalSize(361),
+                                      child: Center(
+                                        child: Text(
+                                          '네이버 로그인',
+                                          textAlign: TextAlign.center,
+                                          style: theme.textTheme.displaySmall!.copyWith(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: getFontSize(
+                                              17,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox( //SizedBox for just padding
+                            height: getVerticalSize(20),
+                          ),
+                          SizedBox(
+                            height: getVerticalSize(
+                                50), // Add appropriate spacing here
+                            child: GestureDetector(
+                              onTap: () {},
+                              child: Material(
+                                color: Colors.transparent,
+                                child: Ink(
+                                  decoration: BoxDecoration(
+                                    color: appTheme.whiteA700,
+                                    borderRadius: BorderRadius.circular(
+                                        getHorizontalSize(6)),
+                                    border: Border.all(
+                                        color: appTheme.whiteA700,
+                                        width: getHorizontalSize(2)),
+                                  ),
+                                  child: InkWell(
+                                    onTap: () {
+                                      // Add your onTap event handling logic here if needed
+                                      handleLogin();
+                                    },
+                                    borderRadius: BorderRadius.circular(
+                                        getHorizontalSize(6)),
+                                    child: Container(
+                                      height: getVerticalSize(52),
+                                      width: getHorizontalSize(361),
+                                      child: Center(
+                                        child: Text(
+                                          'GOOGLE 로그인',
+                                          textAlign: TextAlign.center,
+                                          style: theme.textTheme.displaySmall!.copyWith(
+                                            color: appTheme.blueGray700,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: getFontSize(
+                                              17,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
                         ])))));
