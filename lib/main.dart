@@ -12,7 +12,6 @@ void main() {
   ThemeHelper().changeTheme('primary');
   runApp(MyApp());
 
-
   KakaoSdk.init(nativeAppKey: OAuthKeys.KakaoNativeAppKey);
 }
 
